@@ -11,9 +11,18 @@
           @click="toggleLeftDrawer"
         />
 
-        <q-toolbar-title> Quasar App </q-toolbar-title>
+        <q-toolbar-title> Hoothoot </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <div>
+          <q-btn
+            flat
+            dense
+            round
+            icon="lock"
+            aria-label="sign out"
+            @click="handleSignOut"
+          />
+        </div>
       </q-toolbar>
     </q-header>
 
@@ -49,22 +58,16 @@ export default defineComponent({
         api.defaults.headers.common['Authorization'] = `Bearer ${token}`
       }
 
-      // const res = await fetch('http://localhost:3000/auth', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify({ token }),
-      // })
-
-      // const data = await res.json()
-
-      // if (!data.auth) {
-      //   router.push('/auth')
-      // }
+      // TODO: implement token validation
     }
 
     checkAuth()
+
+    const handleSignOut = () => {
+      localStorage.removeItem('token')
+      api.defaults.headers.common['Authorization'] = null
+      router.push('/auth')
+    }
 
     const leftDrawerOpen = ref(false)
     const toggleLeftDrawer = () => {
@@ -74,6 +77,7 @@ export default defineComponent({
     return {
       leftDrawerOpen,
       toggleLeftDrawer,
+      handleSignOut,
     }
   },
 })
