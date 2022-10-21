@@ -46,7 +46,7 @@
         </q-tab-panel>
 
         <q-tab-panel style="min-height: 360px" name="sign-up" class="q-pa-none">
-          <q-card-section class="row items-center justify-center">
+          <q-card-section class="row items-center justify-center text-center">
             <div class="text-h5 text-weight-medium">sign up</div>
             <p>
               your username will be used to identify you in the chat. you can
@@ -124,7 +124,7 @@
         </q-tab-panel>
 
         <q-tab-panel style="min-height: 360px" name="sign-in" class="q-pa-none">
-          <q-card-section class="row items-center justify-center">
+          <q-card-section class="row items-center justify-center text-center">
             <div class="text-h5 text-weight-medium">sign in</div>
             <p>please enter the passphrase you received when you signed up.</p>
           </q-card-section>
@@ -139,6 +139,7 @@
               class="full-width q-mb-md"
               placeholder="enter passphrase"
               type="password"
+              :rules="rules.passphrase"
             />
 
             <q-btn

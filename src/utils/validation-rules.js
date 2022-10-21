@@ -1,3 +1,5 @@
+import { validate as uuidValidate } from 'uuid'
+
 const usernameRules = [
   // ensure username is not empty
   value => value.length > 0 || 'username is required',
@@ -12,8 +14,17 @@ const usernameRules = [
     'username can only contain alphanumeric characters',
 ]
 
+const passpharseRules = [
+  // ensure passpharse is not empty
+  value => value.length > 0 || 'passpharse is required',
+
+  // ensure passphrase is a valid uuid
+  value => uuidValidate(value) || 'passphrase is not a valid uuid',
+]
+
 const rules = {
   username: usernameRules,
+  passphrase: passpharseRules,
 }
 
 export default rules
